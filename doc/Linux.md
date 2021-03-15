@@ -66,5 +66,92 @@
   - 功能描述:改变用户所在目录。(change directory)
   - 格式: cd <目录名>
   - [root@localhost ~]#cd ..    返回到当前目录的上一级目录
-  - [root@localhost ~]#cd       返回当前用户的主目录
+  - [root@localhost ~]#cd       返回当前用户的主目录（如果是root用户登录，则返回root目录）
   - [root@localhost ~]#cd /home    用路径切换到home目录
+- Is命令
+  - 功能描述:显示指定目录下的内容。( list directory )
+  - 格式: Is [参数] [目录或文件] 
+  - 选项           含义
+  - -a               列举目录中的全部文件，包括隐藏文件
+  - -|               列举目录中的细节，包括0权限、所0有者、组0群、大小、创建日期、文件是否是链接等
+  - -r               逆向，从后向前地列举目录中内容（先显示目录再显示文件）
+  - -R              递归，该选项递归地列举当前目录下所有子目录内的内容![image-20210314103051922](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210314103051922.png)
+  - -s               文件大小size (以数据块的形式的做表示）![image-20210314103457237](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210314103457237.png)
+  - Is -| 1.txt   列举文件1.txt的所有信息	
+- cat命令
+  - 功能描述：显示文本内容
+  - 语法：cat文本文件名字
+  - 例如:在屏幕上显示整个文件的内容: cat 1.txt 
+- touch命令
+  - 功能描述：创建文本但不能进行编辑(不能插入内容) 
+  - 语法: touch 文本文件名字1，文本文件名字2，......
+  - 例如: touch 12.txt
+- grep命令
+  - 功能：是在一堆文件中查找一 个特定的字符串。
+  - 语法：grep 查找的字段  查找的文件
+  - 注意：以上命令在test.xt中查找money这个字符串，grep查找是区分大小写的。
+- cp命令
+  - 功能描述:拷贝文件或复制文件。(copy) 
+  - 格式: cp [源文件] [目标文件]
+  - 选项         含义
+  - -i               互动：如果文件将覆盖目标中的文件,他会提示确认
+    -r               递归：这个选项会复制整个目录、子目录以及其他
+    -v               详细：显示文件的复制进度
+  - [root@localhost ~]#ls
+  - [root@localhost ~]#cp hello.txt file1.txt 把文件hello拷贝份，命名为file1
+- mv命令
+  - 功能描述:可以对文件或者目录进行移动.
+  - 格式: mv [源对象] [目的对象]
+  - 选项     说明
+    -i          互动：如果选择的文件会覆盖目标中的文件，他会提示确认
+    -f          强制：不提示地移动文件
+    -v         详细：显示文件的移动进度
+- mkdir
+  - 功能描述:创建目录。( make directory )
+  - 格式: mkdir [目录名1] [目录名2]
+    [root@localhost ~]#mkdir dir2创建一个目录dir2
+    [root@localhost ~]#ls借助ls命令 查看dir 2是否创建成功
+    [root@localhost ~]#mkdir bb CC dd  一次性创建多个目录
+  - mkdir **-p** aa/bb 目录里面只能嵌套一 个目录（实现嵌套目录的方法）
+- rmdir
+  - 功能描述:删除空目录。( remove directory )
+  - 格式: rmdir [参数] [目录名1] [目录名2] ....
+  - [root@localhost ~]#rmdir dir2删除一 个空目录
+  - [root@localhost ~]#rmdir bb CC dd删除多个空目录
+  - 注意事项：1、不能删除非空目录。2、不能删除当前目录
+  - -p   删除指定目录，如果这个指定目录被删除后，他所在的父目录为空，也会一并删除
+- rm命令
+  - 功能描述:删除文件。remove
+  - 格式: rm [参数] [文件]
+  - 选项          说明
+    -i                互动:提示确认删除
+    -f                强制:代替互动模式,不提示确认删除
+    -v               详细:显示文件的删除进度
+    -r                递归:将删除某个目录以及其中所有的文件和子目录
+
+
+
+3. 线上查询的命令
+
+- man命令
+  - 功能:用来查询和解释一个命令 的使用方法和这个命令的注意事项.
+  - 格式:man命令的名称
+  - 要查询ls命令的说明书页,输入命令: man ls 退出按下q
+- locate命令
+  - 功能:定位文件和目录.
+  - 格式:locate文件或者目录名字
+  - 想要搜索带有test的这个词的文件,输入命令: locate test
+  - ocate命令使用数据库来定位带有test这个词的文件或目录。
+- whatis命令
+  - 功能:用来查询某个命令的含义。
+  - 要查询mv命令的含义,输入命令：whatis mv 
+
+4. 文件备份和压缩命令
+
+- bzip2命令
+  - 功能:bzip2来压缩文件（仅压缩文件），压缩后的文件后缀名字为bzip2。
+  - 格式:bzip2 filename 
+  - 文件即会被压缩,并被保存为filename.bz2。
+  - 要解压缩文件,输入命令：bunzip2 filename.bz2
+  - filename.bz2会被删除,而以filename代替。
+  - bzip2 file1 file2 file3 /home/aa：上面的命令把file1、file2、 file3以及 /home/aa目录中的内容压缩起来。

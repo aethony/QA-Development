@@ -73,7 +73,7 @@
   - 格式: Is [参数] [目录或文件] 
   - 选项           含义
   - -a               列举目录中的全部文件，包括隐藏文件
-  - -|               列举目录中的细节，包括0权限、所0有者、组0群、大小、创建日期、文件是否是链接等
+  - -|               列举目录中的细节，包括权限、所有者、组群、大小、创建日期、文件是否是链接等
   - -r               逆向，从后向前地列举目录中内容（先显示目录再显示文件）
   - -R              递归，该选项递归地列举当前目录下所有子目录内的内容![image-20210314103051922](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210314103051922.png)
   - -s               文件大小size (以数据块的形式的做表示）![image-20210314103457237](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210314103457237.png)
@@ -133,7 +133,7 @@
 
 3. 线上查询的命令
 
-- man命令
+- man命令（Ctrl + Z）
   - 功能:用来查询和解释一个命令 的使用方法和这个命令的注意事项.
   - 格式:man命令的名称
   - 要查询ls命令的说明书页,输入命令: man ls 退出按下q
@@ -155,3 +155,70 @@
   - 要解压缩文件,输入命令：bunzip2 filename.bz2
   - filename.bz2会被删除,而以filename代替。
   - bzip2 file1 file2 file3 /home/aa：上面的命令把file1、file2、 file3以及 /home/aa目录中的内容压缩起来。
+  
+- gzip命令（仅针对文件进行压缩/解压）
+
+  - 要使用gzip来压缩文件，输入命令：gzip filename
+  - 文件即会被压缩,并被保存为filename.gz。
+  - 要解压缩文件,输入命令：gunzip filename.gz
+  - filename.gz会被删除,而以filename代替。
+  - 参数      定义
+  - -r :         递归处理，将指定目录下的所有文件及子目录一并处理;
+  - gzip -r file1  上面的命令把file1目录中的内容压缩起来。
+
+- tar命令
+
+  - 功能描述:将文件或者目录进行打包、或者解压缩。
+  - 格式: tar [参数] [打包后的文件名] [需要打包的文件或目录]。
+  - 其中参数包含以下几个:
+  - -c：创建压缩文件;
+  - -x：展开归档文件;
+  - -t：显示包括在tar文件中的文件列表（在不进行解压的情况下查看压缩包里包含什么内容）
+  - -z：压缩/解压缩文件 (gz格式) ;（加上对于文件夹的压缩）
+  - -v：写入或读取时,显示所有的文件;（在压缩或者解压缩的时候会显示你对哪些文件进行了压缩和解压缩）
+  - -f：指名要展开的归档文件名;（给要压缩的文件起名字）
+  - -j：压缩或解压缩文件 ( bz2格式)。
+  - [root@localhost ~]#tar cvf（压缩参数组合） test.tar /home/test将home 下目录test打包成tar包![image-20210316110628335](Linux.assets/image-20210316110628335.png)
+  - [root@localhost ~]#tar xvf （解压缩参数组合）test.tar 将test.tar解压缩![image-20210316110809769](Linux.assets/image-20210316110809769.png)
+
+  - ps：经压缩后的文件仍旧存在
+  - tar cvf file.tar a b c：将a,b,c三个文件夹一起压缩到file.tar
+  - ![image-20210316111324705](Linux.assets/image-20210316111324705.png)
+  - 要创建一个tar文件 ,输入命令：tar -cvf filename.tar aa bb
+  - 上面的命令将aa、bb放入文件中。
+  - 要列出tar文件的内容，输入命令：tar - tvf filename.tar![image-20210316111243689](Linux.assets/image-20210316111243689.png)
+  - 要抽取tar文件的命令,输入命令：tar -xvf filename.tar
+  - 这个命令不会删除tar文件,但会把解除归档的内容复制到当前工作目录下,并保留归档文件所使用的任何目录结构。
+  - 对文件进行压缩的操作
+    参数1: cjvf         后缀名:xxx. tbz
+    参数2: czvf        后缀名:xxx. tgz
+  - 对文件进行解压缩的操作
+    参数1: xjvf
+    参数2: xzvf
+  - 要创建一个使用tar和bzip2来归档压缩的文件,使用j选项：tar -cjvf filename.**tbz** file
+  - 要扩展并解除归档bzip tar文件，输入命令：tar -xjvf filename.tbz
+  - 要创建一个用tar和gzip归档并压缩的文件，使用-z选项：tar czvf filename.**tgz** file
+  - 要扩展并解除归档gzip tar文件，输入命令：tar -xzvf filename.tgz
+
+5. 文件阅读命令
+
+- head命令
+  - 功能描述：head命令可以用来查看文件的开头部分。
+  - 此命令的格式是：head 文件名
+  - 默认设置，它只查看文件的**前10行**。但可以通过指定一个数字
+  - 选项来改变要显示的行数，命令如下：head   -20  文件名；这个命令将会查看文件的前20行。
+- tail命令
+  - 功能：查看文件结尾的10行（默认）。
+  - 格式：tail -行数 文件名
+  - 这有助于查看日志文件的最后10行来阅读重要的系统信息。
+- more命令
+  - 功能：按页来查看文件的内容more使用空格键和b键来前后移动。
+  - 语法：more [选项] [fileNames]
+  - eg：more 1.txt
+  - 选项            含义
+    -num           一次显示的行数
+    -f                  计算行数时,以实际上的行数,而非自动换行过后的行数(有些单行字数太长的会被扩展为两行或两行以上)
+    +num           从第num行开始显示![image-20210316124825388](Linux.assets/image-20210316124825388.png)
+
+
+

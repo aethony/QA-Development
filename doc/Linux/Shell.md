@@ -38,3 +38,25 @@
     - 仅在退出注册时运行
   - .bash history
     - 历史纪录
+
+##### shell脚本格式
+
+- 格式：vi shell_script.sh
+- 脚本第一行格式：#!/bin/bash
+- 符号#!用来指定该脚本文件的解析程序，这里使用的是bin目录下的bash解析器。当编辑好脚本后，如果要执行该脚本,还必须使其具有可执行属性。
+
+![image-20210322101409385](Shell.assets/image-20210322101409385.png)
+
+- 变量调用：$para_name
+- 只读变量：使用readonly命令可以将变量定义为只读变量,只读变量的值不能被改变。![image-20210322111708029](Shell.assets/image-20210322111708029.png)
+- 删除变量：使用unset命令可以删除变量，变量被删除后不能再次进行使用，且unset命令不能删除只读变量。语法为：unset variable_name
+- 求解字符串的长度：$(#para_name)能够获取一个字符串的长度
+- 截取字符串：用“:”来进行提取即可，语法为”para_name:start_index:length of cut out“
+- 解析方式一：chmod +x脚本文件的名字   eg：./脚本文件的名字
+- 解析方式二：/bin/bash  脚本文件的名字
+
+##### 
+
+##### shell数组
+
+- 定义格式：array_name = (value0 value1 ... valuen)

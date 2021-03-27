@@ -55,8 +55,34 @@
 - 解析方式一：chmod +x脚本文件的名字   eg：./脚本文件的名字
 - 解析方式二：/bin/bash  脚本文件的名字
 
-##### 
+ 
 
 ##### shell数组
 
 - 定义格式：array_name = (value0 value1 ... valuen)
+- 引用数据：${array_name[index]}
+- 使用@符号可以获取数组中的所有元素，例如：echo ${array_ name[@]}
+- 获取数组的长度：
+  - 取得数组元素的个数：length= ${#array_ name[@]}
+  - 取得数组单个元素的长度：lengthn=${#array_name[n]} 
+
+
+
+##### shell基本运算法
+
+- 算数运算符：expr的使用：`"``expr``
+  - expr计算表达式工具要使用反引号给包患起来在esc键下方；使用格式:‘ expr数值1运算符号数值2’。例: var=' expr 1 + 1'
+  - ![image-20210324113450150](Shell.assets/image-20210324113450150.png)
+- 关系运算符
+  - -eq       检测两个数是否相等,相等返回true。      [$a-eq$b]返回false。
+  - -ne       检测两个数是否相等,不相等返回true。  [$a-ne$b]返回true.
+  - -gt       检测左边的数是否大于右边的,如果是,则返回true。    [$a-gt$b]返回false.
+  - -lt       检测左边的数是否小于右边的,如果是,则返回true。     [$a-It$b]返回true.
+  - -ge       检测左边的数是否大于等于右边的,如果是，则返回true。    [$a-ge$b]返回false。
+  - -le       检测左边的数是否小于等于右边的,如果是,则返回true。        [$a-le$b]返回true。
+- 布尔运算符
+- 字符串运算符
+- 文件测试运算符
+- 条件判断：
+  - if 格式：if [ 判断条件 ]  then 语句块 fi（结束）
+
